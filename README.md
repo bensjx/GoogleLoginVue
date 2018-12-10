@@ -1,2 +1,0 @@
-# GoogleLoginVue
-Created with CodeSandbox

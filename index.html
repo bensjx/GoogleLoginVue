@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Parcel Sandbox</title>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+	<div id="app">
+		<g-signin-button @done="onUserLoggedIn" />
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=init"></script>
+	<script>
+		Vue.component('g-signin-button', {
+			template: '<div ref="signinBtn" class="btn-sign-in">Sign In</div>',
+			mounted () {
+				window.gapi.load('auth2', () => {
+					const auth2 = window.gapi.auth2.init({
+						client_id: '229904947910-8omu7q89cn438dr41ogbnqgod3o8dpd5.apps.googleusercontent.com',
+						cookiepolicy: 'single_host_origin'
+					 })
+					auth2.attachClickHandler(this.$refs.signinBtn, {},googleUser => {
+						console.log(googleUser.getBasicProfile().getName())
+						}, error => console.log(error))
+					 })
+			 }
+		})
+
+		var app = new Vue({
+			el: '#app',
+			methods: {
+				onUserLoggedIn (user) {
+					console.log(user)
+				}
+			}
+		})
+	</script>
+</body>
+
+<style>
+	.btn-sign-in {
+		background: #fff;
+		 font: 16px/22px Roboto; 
+		 padding: 4px 8px; 
+		 border: 1px solid #ccc; 
+		 display: inline-block;
+		 cursor: pointer; 
+	 }
+</style>
+
+</html>
