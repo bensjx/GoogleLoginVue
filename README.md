@@ -1,1 +1,1 @@
-https://bensjx.github.io/GoogleLoginVue/index.html
+https://bensjx.github.io/GoogleLoginVue
