@@ -8,14 +8,28 @@
 
 <body>
 	<div id="app">
-		<g-signin-button @done="onUserLoggedIn" />
+		<g-signin-button @done="onUserLoggedIn" :name="name" :email="email2" />
 	</div>
 
 	<script src="https://unpkg.com/vue"></script>
 	<script src="https://apis.google.com/js/platform.js?onload=init"></script>
 	<script>
 		Vue.component('g-signin-button', {
-			template: '<div ref="signinBtn" class="btn-sign-in">Sign In</div>',
+			props:{
+				name:{
+					type: String,
+					required:true,
+				},
+				email:{
+					type: String,
+					required: true,
+				},
+			},
+			template: `<div>
+									<div ref="signinBtn" class="btn-sign-in">Sign In</div>
+									<br>
+									<h3> Hi my name is {{name}} and my email is {{email}} </h3>
+								</div>`,
 			mounted () {
 				window.gapi.load('auth2', () => {
 					const auth2 = window.gapi.auth2.init({
@@ -23,7 +37,7 @@
 						cookiepolicy: 'single_host_origin'
 					 })
 					auth2.attachClickHandler(this.$refs.signinBtn, {},googleUser => {
-						console.log(googleUser.getBasicProfile().getName())
+						this.name = "hi"
 						}, error => console.log(error))
 					 })
 			 }
@@ -31,6 +45,10 @@
 
 		var app = new Vue({
 			el: '#app',
+			data:{
+				name: '<not signed in>',
+				email2:'<not signed in>'
+			},
 			methods: {
 				onUserLoggedIn (user) {
 					console.log(user)
