@@ -5,6 +5,9 @@ Demo: https://bensjx.github.io/GoogleLoginVue
 1. Go to firebase console, under develop -> authentication -> sign-in methods, enable google login.
 2. Under the google login portion, go to Web Client ID. This is your clientID.
 3. In index.html, under change clientID to your OWN clientID.
+4. You have to authorize your webpage to sign in via google. Go to https://console.developers.google.com/ -> Credentials
+5. 2 things you need to do over here. Under OAuth Consent Screen -> Authorized Domains, key in your main web page without "/" or "https://". Examples are "codesandbox.io" and "bensjx.github.io".
+6. Under Credentials -> "OAuth 2.0 client IDs", click "Web client (auto created by Google Service)". Now under Authorized Javascript Origins, enter the specific web page you want to authorize. Example: "https://10w5jv02vj.codesandbox.io". Remember: codesandbox link change everytime you save your file so you have to keep repeating step number 6 everytime you change your code and save your file
 
 ## Note:
 
