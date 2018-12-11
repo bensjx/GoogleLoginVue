@@ -37,7 +37,8 @@
 						cookiepolicy: 'single_host_origin'
 					 })
 					auth2.attachClickHandler(this.$refs.signinBtn, {},googleUser => {
-						this.name = "hi"
+						this.name = googleUser.getBasicProfile().getName();
+						this.email = googleUser.getBasicProfile().getEmail();
 						}, error => console.log(error))
 					 })
 			 }
